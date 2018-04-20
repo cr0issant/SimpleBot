@@ -1,11 +1,12 @@
-
+ #include <Wire.h> 
+ #include <LiquidCrystal_I2C.h>
+ //LiquidCrystal_I2C lcd(0x27, 20, 4);
+ LiquidCrystal_I2C lcd(0x3F,20,4);
+ 
  #include <Servo.h>
  Servo Servo3;  
-
  Servo Servo5;  
-
  Servo Servo6;  
-
  Servo Servo9;  
 
 
@@ -42,7 +43,7 @@ void setup() {
    Servo9.attach(9);  
    
    Serial.begin (9600);
-
+   lcd.init(); 
 
 }
 
@@ -113,5 +114,69 @@ void loop() {
     delay(20);
     temp = 1;
   }
+  
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("(3)=");
+    if ( Servo3_SensorValue < 100 )
+  {
+    lcd.setCursor(4, 0);
+    lcd.print(" ");
+    lcd.setCursor(5, 0);
+    lcd.print(Servo3_SensorValue);
+  }
+  else
+  {
+    lcd.setCursor(4, 0);
+    lcd.print(Servo3_SensorValue);
+  }
 
+  //----------
+  lcd.setCursor(8, 0);
+  lcd.print("(5)=");
+    if ( Servo5_SensorValue < 100 )
+  {
+    lcd.setCursor(12, 0);
+    lcd.print(" ");
+    lcd.setCursor(13, 0);
+    lcd.print(Servo5_SensorValue);
+  }
+  else
+  {
+    lcd.setCursor(12, 0);
+    lcd.print(Servo5_SensorValue);
+  }
+
+  //----------
+  lcd.setCursor(0, 1);
+  lcd.print("(6)=");
+    if ( Servo6_SensorValue < 100 )
+  {
+    lcd.setCursor(4, 1);
+    lcd.print(" ");
+    lcd.setCursor(5, 1);
+    lcd.print(Servo6_SensorValue);
+  }
+  else
+  {
+    lcd.setCursor(4, 1);
+    lcd.print(Servo6_SensorValue);
+  }
+
+  //----------
+  lcd.setCursor(8, 1);
+  lcd.print("(9)=");
+    if ( Servo9_SensorValue < 100 )
+  {
+    lcd.setCursor(12, 1);
+    lcd.print(" ");
+    lcd.setCursor(13, 1);
+    lcd.print(Servo9_SensorValue);
+  }
+  else
+  {
+    lcd.setCursor(12, 1);
+    lcd.print(Servo9_SensorValue);
+  }
+  delay(1);
 }
